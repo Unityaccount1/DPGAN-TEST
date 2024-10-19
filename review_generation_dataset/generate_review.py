@@ -49,7 +49,7 @@ def write_reivew_to_file(path, reviews, scores, count):
     write_file.close()
 
 
-file_path = "F:\dataset\yelp_dataset\sorted_data"
+file_path = "review_generation_dataset/test"
 
 files = os.listdir(file_path)
 
@@ -69,7 +69,7 @@ score_ana_train ={}
 score_ana_valid ={}
 score_ana_test ={}
 for i, file in enumerate(train_filename):
-    file_ = codecs.open(file_path+"\\"+file,'r',"utf-8",errors="replace")
+    file_ = codecs.open(file_path+"/"+file,'r',"utf-8",errors="replace")
     reviews, scores = read_single_json(file_)
     review_train_number+=len(reviews)
     for score in scores:
@@ -77,13 +77,13 @@ for i, file in enumerate(train_filename):
             score_ana_train[score] = 1
         else:
             score_ana_train[score] += 1
-    write_reivew_to_file("train", reviews,scores,i)
+    write_reivew_to_file("review_generation_dataset/train", reviews,scores,i)
 
 
 for i, file in enumerate(valid_filename):
-    file_ = codecs.open(file_path+"\\"+file,'r',"utf-8",errors="replace")
+    file_ = codecs.open(file_path+"/"+file,'r',"utf-8",errors="replace")
     reviews, scores = read_single_json(file_)
-    write_reivew_to_file("valid", reviews,
+    write_reivew_to_file("review_generation_dataset/valid", reviews,
                          scores, i)
     review_valid_number += len(reviews)
     for score in scores:
@@ -93,7 +93,7 @@ for i, file in enumerate(valid_filename):
             score_ana_valid[score] += 1
 
 for i, file in enumerate(test_filename):
-    file_ = codecs.open(file_path+"\\"+file,'r',"utf-8",errors="replace")
+    file_ = codecs.open(file_path+"/"+file,'r',"utf-8",errors="replace")
     reviews, scores = read_single_json(file_)
 
     write_reivew_to_file("test", reviews,
